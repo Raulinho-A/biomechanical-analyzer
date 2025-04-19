@@ -112,7 +112,7 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 ## 📦 Installation
 
 ```bash
-git clone git@github.com:Raulinho-A/biomechanical-analyzer.git
+git clone https://github.com/Raulinho-A/biomechanical-analyzer.git
 cd biomechanical-analyzer
 pip install -r requirements.txt
 ```
