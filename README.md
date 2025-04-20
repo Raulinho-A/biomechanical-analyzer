@@ -45,8 +45,10 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 │   ├── processed      <- The final, canonical data sets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── models/                  <- Trained and serialized models, model predictions, or model summaries
+│   ├── trained/             <- Final machine learning models ready for inference (e.g., .pkl, .joblib)
+│   ├── checkpoints/         <- Intermediate model weights saved during training (e.g., for resuming)
+│   └── mediapipe/           <- Pretrained task models used by MediaPipe (e.g., pose_landmarker.task)
 │
 ├── notebooks          <- Jupyter notebooks for exploration, training, and evaluation │ Naming: <order>-<initials>-<description>.ipynb, e.g. 1.0-lea-exploration.ipynb
 │
@@ -80,7 +82,7 @@ To develop a web-based prototype capable of analyzing exercise performance and p
     |
     ├── vision                  <- OpenCV + MediaPipe
     |   ├── extract_keypoints.py
-    │   ├── preprocess_video.py
+    │   └── preprocess_video.py
     |
     └── api                     <- FastAPI backend module (to be implemented)
 ```
