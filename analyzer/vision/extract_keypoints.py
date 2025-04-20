@@ -4,13 +4,14 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from typing import List, Dict
+from analyzer.config import MEDIAPIPE_MODEL_PATH
 
 BaseOptions = python.BaseOptions
 PoseLandmarker = vision.PoseLandmarker
 PoseLandmarkerOptions = vision.PoseLandmarkerOptions
 VisionRunningMode = vision.RunningMode
 
-MODEL_PATH = "models/mediapipe/pose_landmarker_full.task"
+MODEL_PATH = MEDIAPIPE_MODEL_PATH
 
 def extract_pose_landmarks(video_path: str) -> List[Dict]:
     all_landmarks = []

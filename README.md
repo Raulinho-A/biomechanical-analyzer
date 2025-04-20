@@ -39,18 +39,26 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 ├── LICENSE            <- License of the project
 ├── HISTORY.md         <- The HISTORY changes track
 ├── README.md          <- The top-level README for developers using this project.
+|
+├── .gitignore
+├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `pip freeze > requirements.txt`
+├── Dockerfile
+├── main.py            <- Main script for running the processing pipeline
+|
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
 │   ├── processed      <- The final, canonical data sets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
-├── models/                  <- Trained and serialized models, model predictions, or model summaries
-│   ├── trained/             <- Final machine learning models ready for inference (e.g., .pkl, .joblib)
-│   ├── checkpoints/         <- Intermediate model weights saved during training (e.g., for resuming)
-│   └── mediapipe/           <- Pretrained task models used by MediaPipe (e.g., pose_landmarker.task)
+├── models/            <- Trained and serialized models, model predictions, or model summaries
+│   ├── trained/       <- Final machine learning models ready for inference (e.g., .pkl, .joblib)
+│   ├── checkpoints/   <- Intermediate model weights saved during training (e.g., for resuming)
+│   └── mediapipe/     <- Pretrained task models used by MediaPipe (e.g., pose_landmarker.task)
 │
-├── notebooks          <- Jupyter notebooks for exploration, training, and evaluation │ Naming: <order>-<initials>-<description>.ipynb, e.g. 1.0-lea-exploration.ipynb
+├── notebooks          <- Jupyter notebooks for exploration, training, and evaluation
+│                         Naming: <order>-<initials>-<description>.ipynb, e.g. 1.0-lea-exploration.ipynb
 │
 │
 ├── references         <- Background material and references.
@@ -59,9 +67,6 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 │
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
 │
 └── analyzer           <- Source code for use in this project.
     │

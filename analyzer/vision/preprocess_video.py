@@ -1,6 +1,8 @@
 import cv2
 
-OUTPUT_PATH = 'data/raw/record_01.mp4'
+from analyzer.config import RAW_DATA_DIR
+
+OUTPUT_PATH = RAW_DATA_DIR / 'record_01.mp4'
 
 cap = cv2.VideoCapture(0)
 
