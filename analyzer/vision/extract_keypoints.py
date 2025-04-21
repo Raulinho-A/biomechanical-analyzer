@@ -18,7 +18,7 @@ def extract_pose_landmarks(video_path: str) -> List[Dict]:
 
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        raise IOError(f"Cannnot open video: {video_path}")
+        raise IOError(f"Cannot open video: {video_path}")
 
     options = PoseLandmarkerOptions(
         base_options=BaseOptions(model_asset_path=MODEL_PATH),
