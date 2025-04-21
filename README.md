@@ -46,6 +46,8 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 ├── Dockerfile
 ├── main.py            <- Main script for running the processing pipeline
 |
+├── setup.py           <- Editable package installer for `analyzer/`.
+|
 ├── data
 │   ├── external       <- Data from third party sources.
 │   ├── interim        <- Intermediate data that has been transformed.
@@ -58,8 +60,8 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 │   └── mediapipe/     <- Pretrained task models used by MediaPipe (e.g., pose_landmarker.task)
 │
 ├── notebooks          <- Jupyter notebooks for exploration, training, and evaluation
-│                         Naming: <order>-<initials>-<description>.ipynb, e.g. 1.0-lea-exploration.ipynb
-│
+│   |                     Naming: <order>-<initials>-<description>.ipynb, e.g. 1.0-raa-exploration.ipynb
+|   └── mediapipe_analysis/   # Subfolder for specific MediaPipe analytics.
 │
 ├── references         <- Background material and references.
 │   ├── biomechanics.md       # Biomechanics notes and theory
@@ -70,26 +72,24 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 │
 └── analyzer           <- Source code for use in this project.
     │
-    ├── __init__.py             <- Marks this directory as a Python module
-    │
+    ├── __init__.py             
     ├── config.py               <- Store useful variables and configuration
-    │
     ├── dataset.py              <- Data loading and preprocessing logic
-    │
     ├── features.py             <- Feature extraction functions
+    ├── plots.py                <- Visualization functions
     │
-    ├── plots.py                <- Visualization utilities
-    │
-    ├── modeling                <- Machine learning pipeline 
-    │   ├── __init__.py 
-    │   ├── train.py            <- Model training script
-    │   └── predict.py          <- Model inference and predictions
+    ├── modeling                <- Machine learning pipeline
+    |   ├── __init__.py 
+    |   ├── train.py            <- Model training script
+    │   ├── predict.py          <- Model inference and predictions
+    │   └── evaluate.py         <- Evaluation metrics
     |
     ├── vision                  <- OpenCV + MediaPipe
-    |   ├── extract_keypoints.py
-    │   └── preprocess_video.py
+    |   ├── __init__.py
+    |   ├── extract_keypoints.py    <- Extraction of body landmarks from videos.
+    │   └── preprocess_video.py     <- Video cleaning and preparation.
     |
-    └── api                     <- FastAPI backend module (to be implemented)
+    └── api                     <- FastAPI endpoints (future work).
 ```
 
 ---
@@ -121,7 +121,11 @@ To develop a web-based prototype capable of analyzing exercise performance and p
 ```bash
 git clone https://github.com/Raulinho-A/biomechanical-analyzer.git
 cd biomechanical-analyzer
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+# 💡 Recommended: install the project as an editable package
+pip install -e .
 ```
 
 ## 🧪 Run

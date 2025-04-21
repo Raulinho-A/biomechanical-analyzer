@@ -5,11 +5,10 @@ from analyzer.config import RAW_DATA_DIR
 OUTPUT_PATH = RAW_DATA_DIR / 'record_01.mp4'
 
 cap = cv2.VideoCapture(0)
-
 fps = cap.get(cv2.CAP_PROP_FPS)
 
 if not cap.isOpened():
-    raise IOError(f"Cannnot open camera")
+    raise IOError(f"Cannot open camera")
 
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
