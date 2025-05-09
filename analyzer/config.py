@@ -12,6 +12,12 @@ INTERIM_DATA_DIR = DATA_DIR / "interim"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 RAW_DATA_DIR = DATA_DIR / "raw"
 
+# Errores técnicos
+ERRORES_TECNICOS = RAW_DATA_DIR / "errores-tecnicos-1.0"
+ERRORES_PLANO_CORONAL = ERRORES_TECNICOS / "coronal"
+ERRORES_PLANO_SAGINTAL = ERRORES_TECNICOS / "sagital"
+ERRORES_PLANO_CUASI_SAGITAL = ERRORES_TECNICOS / "cuasi-sagital"
+
 # Model paths
 MODELS_DIR = PROJ_ROOT / "models"
 MEDIAPIPE_MODEL_PATH = MODELS_DIR / "mediapipe" / "pose_landmarker_heavy.task"
