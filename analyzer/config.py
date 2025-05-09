@@ -19,7 +19,7 @@ PLANO_SAGINTAL = PLANOS_RECORDING / "sagital"
 PLANO_CUASI_SAGITAL = PLANOS_RECORDING / "cuasi-sagital"
 
 # Processed
-KEYPOINTS = PROCESSED_DATA_DIR / 'keypoints'
+KEYPOINTS = INTERIM_DATA_DIR / 'keypoints'
 
 # Raw
 DEMOS = RAW_DATA_DIR / 'demos'

@@ -1,7 +1,9 @@
 import cv2
 import json
 import mediapipe as mp
-from mediapipe.tasks import python, vision
+from mediapipe.tasks import python
+from mediapipe.tasks.python import vision
+from mediapipe.framework.formats import landmark_pb2
 from pathlib import Path
 from analyzer.config import MEDIAPIPE_MODEL_PATH, KEYPOINTS
 
@@ -13,7 +15,10 @@ VisionRunningMode = vision.RunningMode
 class PoseExtractor:
     def __init__(self, video_path: str, output_json: str = None):
         self.video_path = Path(video_path)
-        self.output_json = Path(output_json) if output_json else (KEYPOINTS / f"{self.video_path.stem}_keypoints.json")
+        if output_json:
+            self.output_json = KEYPOINTS / Path(output_json).name
+        else: 
+            self.output_json = KEYPOINTS / f"{self.video_path.stem}_keypoints.json"
         self.model_path = MEDIAPIPE_MODEL_PATH
 
     def extract(self, show=False):
@@ -42,7 +47,10 @@ class PoseExtractor:
                 ret, frame = cap.read()
                 if not ret:
                     break
-
+                
+                ## Función para normalizar a 1:1
+                frame = self.make_square(frame)
+                ##
                 rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
                 timestamp = int((frame_index / fps) * 1000)
@@ -58,20 +66,35 @@ class PoseExtractor:
                     all_landmarks.append(keypoints)
 
                     if show:
-                        mp.solutions.drawing_utils.draw_landmarks(
-                            frame, result.pose_landmarks[0],
-                            mp.solutions.pose.POSE_CONNECTIONS,
-                            landmark_drawin_spec=drawing_spec
-                        )
-                    else:
-                         all_landmarks.append([])
+                        landmarks_converted = []
+                        for lm in result.pose_landmarks[0]:
+                            landmark_converted = landmark_pb2.NormalizedLandmark(
+                                x=lm.x,
+                                y=lm.y,
+                                z=lm.z,
+                                visibility=lm.visibility
+                            )
+                            landmarks_converted.append(landmark_converted)
 
-                    if show:
-                        cv2.imshow('Pose Extracting', frame)
-                        if cv2.waitKey(1) & 0xFF == 27:
-                            print("Debug visual interrumpido")
-                            break
-                    frame_index += 1
+                        landmark_list = landmark_pb2.NormalizedLandmarkList(
+                            landmark=landmarks_converted
+                        )
+
+                        mp.solutions.drawing_utils.draw_landmarks(
+                            frame, 
+                            landmark_list,
+                            mp.solutions.pose.POSE_CONNECTIONS,
+                            landmark_drawing_spec=drawing_spec
+                        )
+                else:
+                    all_landmarks.append([])
+
+                if show:
+                    cv2.imshow('Pose Extracting', frame)
+                    if cv2.waitKey(1) & 0xFF == 27:
+                        print("Debug visual interrumpido")
+                        break
+                frame_index += 1
 
         cap.release()
         if show:
@@ -85,3 +108,11 @@ class PoseExtractor:
             json.dump(data, f, indent=4)
         print(f"Keypoints dados en: {self.output_json}")
 
+    def make_square(self, image):
+        height, width = image.shape[:2]
+        size = min(height, width)
+        # Centrar crop
+        top = (height - size) // 2
+        left = (width - size) // 2
+        cropped = image[top:top + size, left:left + size]
+        return cropped
