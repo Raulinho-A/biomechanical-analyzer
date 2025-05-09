@@ -181,7 +181,11 @@ cython_debug/
 *.flv
 *.webm
 
-# Exclude raw recordings and extracted data
+# Exclude recordings and extracted data
 /data/raw/**/*.mp4
 /data/raw/**/*.json
 !/data/raw/**/.gitkeep
+
+/data/interim/**/*.mp4
+/data/interim/**/*.json
+!/data/interim/**/.gitkeep
