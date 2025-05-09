@@ -173,6 +173,17 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# Video:
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+*.webm
+
 # Exclude raw recordings and extracted data
-data/raw/*.mp4
-data/raw/*.json
+*.mp4
+/data/raw/
+/data/raw/*.mp4
+/data/raw/*.json
+!/data/raw/.gitkeep
