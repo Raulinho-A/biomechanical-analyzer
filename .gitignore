@@ -182,8 +182,6 @@ cython_debug/
 *.webm
 
 # Exclude raw recordings and extracted data
-*.mp4
-/data/raw/
-/data/raw/*.mp4
-/data/raw/*.json
-!/data/raw/.gitkeep
+/data/raw/**/*.mp4
+/data/raw/**/*.json
+!/data/raw/**/.gitkeep
