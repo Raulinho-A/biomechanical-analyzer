@@ -1,5 +1,5 @@
 from analyzer.detector.coronal.valgo_detector import ValgoDetector
-from analyzer.detector.posture_error_detector import PoseLandmark as l
+from analyzer.detector.error_detector import PoseLandmark as l
 
 def fake_kps_plano():
     """Todos los puntos son iguales → debería dar NaN y valgo=False."""

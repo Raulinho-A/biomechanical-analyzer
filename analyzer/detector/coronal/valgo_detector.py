@@ -1,5 +1,5 @@
-from analyzer.core.angle_utils import calculate_angle
-from analyzer.detector.posture_error_detector import PoseLandmark, PostureErrorDetector
+from analyzer.detector.angle_utils import calculate_angle
+from analyzer.detector.error_detector import PoseLandmark, PostureErrorDetector
 from analyzer.config.thresholds import VALGO_ANGLE_THRESHOLD, VALGO_RATIO_THRESHOLD
 import numpy as np
 
