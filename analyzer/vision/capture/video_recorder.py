@@ -1,5 +1,5 @@
 import cv2
-from analyzer.config import RAW_DATA_DIR
+from analyzer.settings import RAW_DATA_DIR
 
 class VideoRecorder:
     def __init__(self, output_name: str = 'record_01.mp4', camera_index=0):

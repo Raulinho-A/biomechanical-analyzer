@@ -1,7 +1,7 @@
 from analyzer.vision.capture import VideoRecorder
 from analyzer.vision.keypoints.pose_extractor import PoseExtractor
 from analyzer.vision.keypoints.pose_drawer import PoseDrawer
-from analyzer.config import DEMOS, KEYPOINTS
+from analyzer.settings import DEMOS, KEYPOINTS
 
 def main():
     ## Recording
@@ -9,16 +9,16 @@ def main():
     # recorder.record()
 
     ## Extracting
-    # video_path = DEMOS / 'demo_01.mp4'
-    # extractor = PoseExtractor(video_path=video_path)
-    # extractor.extract(show=True)
+    video_path = DEMOS / 'demo_01.mp4'
+    extractor = PoseExtractor(video_path=video_path)
+    extractor.extract(show=True)
 
     ## Drawing
-    video_path = DEMOS / 'demo_01.mp4'
-    keypoints_json = KEYPOINTS / 'demo_01_keypoints.json'
+    # video_path = DEMOS / 'demo_01.mp4'
+    # keypoints_json = KEYPOINTS / 'demo_01_keypoints.json'
 
-    drawer = PoseDrawer(video_path=video_path, keypoints_json=keypoints_json)
-    drawer.draw_and_save(show=True)
+    # drawer = PoseDrawer(video_path=video_path, keypoints_json=keypoints_json)
+    # drawer.draw_and_save(show=True)
 
 if __name__ == "__main__":
     main()
