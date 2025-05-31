@@ -5,7 +5,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from mediapipe.framework.formats import landmark_pb2
 from pathlib import Path
-from analyzer.config import MEDIAPIPE_MODEL_PATH, KEYPOINTS
+from analyzer.settings import MEDIAPIPE_MODEL_PATH, KEYPOINTS
 
 BaseOptions = python.BaseOptions
 PoseLandmarker = vision.PoseLandmarker
@@ -101,6 +101,12 @@ class PoseExtractor:
             cv2.destroyAllWindows()
 
         self.save_to_json(all_landmarks)
+
+        total_frames = frame_index
+        frames_with_keypoints = sum(1 for frame in all_landmarks if frame)
+        porcentaje = (frames_with_keypoints / total_frames) * 100 if total_frames else 0
+        print(f"Frames procesados: {total_frames} / Keypoints detectados correctamente: {porcentaje:.1f}%")
+        
         return all_landmarks
     
     def save_to_json(self, data):

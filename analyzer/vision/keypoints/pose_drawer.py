@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import mediapipe as mp
 from mediapipe.framework.formats import landmark_pb2
-from analyzer.config import KEYPOINTS
+from analyzer.settings import KEYPOINTS
 
 class PoseDrawer:
     def __init__(self, video_path: str, keypoints_json: str, output_video: str = None):
